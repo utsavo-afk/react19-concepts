@@ -1,31 +1,43 @@
 "use client"
 
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { Button } from "./ui/button"
+import { calculateWinner } from "@/lib/ticTacToe/utils";
 
 function Square({ value, onSquareClick }: { value: XO, onSquareClick: () => void }) {
     return <Button variant="outline" className="board-square" onClick={onSquareClick}>{value}</Button>
 }
 
-<<<<<<< Updated upstream
-type XO = "X" | "O" | null;
 
-function GameBoard() {
-=======
 function Board() {
     let status: string | null = null // game status
 
->>>>>>> Stashed changes
     const [squares, setSquares] = useState<XO[]>(Array(9).fill(null))
+    const [xIsNext, setXIsNext] = useState<boolean>(true)
+
+    const winner = calculateWinner(squares)
+
+    if (winner) {
+        status = `Winner: ${winner}`
+    } else {
+        status = `Next player: ${xIsNext ? "X" : "O"}`
+    }
 
     function handleClick(idx: number) {
+        if (squares[idx] || winner) {
+            return
+        }
         const nextSquares = squares.slice()
-        nextSquares[idx] = "X"
+        xIsNext ? nextSquares[idx] = "X" : nextSquares[idx] = "O"
+        setXIsNext(!xIsNext)
         setSquares(nextSquares)
     }
 
     return (
         <>
+            <div className="mb-4 text-center">
+                <h3 className="font-medium text-xl">{status}</h3>
+            </div>
             <div className="board-row">
                 <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
                 <Square value={squares[1]} onSquareClick={() => handleClick(1)} />

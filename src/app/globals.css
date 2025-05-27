@@ -122,6 +122,18 @@
   }
 }
 
+.board-wrapper {
+  @apply flex flex-col items-center justify-center min-w-sm
+}
+
 .board-row {
   @apply flex items-center justify-center;
+}
+
+.board-square {
+  @apply w-24 h-24 focus:outline-none text-4xl font-extrabold
+}
+
+.game-title {
+  @apply text-5xl text-center font-extrabold mb-3
 }

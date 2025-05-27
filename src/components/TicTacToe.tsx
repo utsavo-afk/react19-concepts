@@ -1,28 +1,34 @@
 "use client"
 
+import { useState } from "react";
 import { Button } from "./ui/button"
 
-function Square({ value }: { value?: string }) {
-    return <Button variant="outline" className="w-16 h-16 focus:outline-none text-2xl font-extrabold">{value}</Button>
+function Square() {
+    const [value, setValue] = useState<string | null>(null)
+    function handleClick() {
+        // console.log(`clicked`);
+        setValue("X")
+    }
+    return <Button variant="outline" className="w-16 h-16 focus:outline-none text-xl font-extrabold" onClick={handleClick}>{value}</Button>
 }
 
 function GameBoard() {
     return (
         <>
-            <div>
-                <Square value="1" />
-                <Square value="2" />
-                <Square value="3" />
+            <div className="board-row">
+                <Square />
+                <Square />
+                <Square />
             </div>
-            <div>
-                <Square value="4" />
-                <Square value="5" />
-                <Square value="6" />
+            <div className="board-row">
+                <Square />
+                <Square />
+                <Square />
             </div>
-            <div>
-                <Square value="7" />
-                <Square value="8" />
-                <Square value="9" />
+            <div className="board-row">
+                <Square />
+                <Square />
+                <Square />
             </div>
         </>
     )

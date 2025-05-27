@@ -4,17 +4,18 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { Button } from "./ui/button"
 
 function Square({ value, onSquareClick }: { value: XO, onSquareClick: () => void }) {
-    // const [value, setValue] = useState<string | null>(null)
-    // function handleClick() {
-    //     console.log(`clicked`);
-    //     // setValue("X")
-    // }
-    return <Button variant="outline" className="w-16 h-16 focus:outline-none text-xl font-extrabold" onClick={onSquareClick}>{value}</Button>
+    return <Button variant="outline" className="board-square" onClick={onSquareClick}>{value}</Button>
 }
 
+<<<<<<< Updated upstream
 type XO = "X" | "O" | null;
 
 function GameBoard() {
+=======
+function Board() {
+    let status: string | null = null // game status
+
+>>>>>>> Stashed changes
     const [squares, setSquares] = useState<XO[]>(Array(9).fill(null))
 
     function handleClick(idx: number) {
@@ -45,8 +46,10 @@ function GameBoard() {
 }
 
 export default function TicTacToe() {
-    return <div className="flex flex-col items-center justify-center min-w-sm">
-        <h1 className="text-3xl text-center font-bold mb-3">Tic-Tac-Toe</h1>
-        <GameBoard />
+    return <div>
+        <div className="board-wrapper">
+            <h1 className="game-title">Tic-Tac-Toe</h1>
+            <Board />
+        </div>
     </div>
 }
